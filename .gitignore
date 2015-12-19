@@ -1,2 +1,5 @@
 # Don't commit the resume database.
 resume.db
+
+# The __pycache__ directory
+__pycache__/
