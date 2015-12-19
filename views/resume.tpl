@@ -1,10 +1,10 @@
 
 <div class = 'person-container'>
-  <h1>{{ person['Name'] }}</h1>
-  <h2>{{ person['Title'] }}</h2>
-  <span>{{ person['Address'] }}</span>
-  <span>{{ person['Phone'] }}</span>
-  <span>{{ person['Email'] }}</span>
+  <h1>{{ person['first_name'] + ' ' + person['last_name'] }}</h1>
+  <h2>{{ person['title'] }}</h2>
+  <span>{{ person['address'] }}</span>
+  <span>{{ person['phone_number'] }}</span>
+  <span>{{ person['email'] }}</span>
 </div>
 
 <h3>Skills:</h3>
