@@ -13,6 +13,7 @@
   %for skill in skills:
     <li>
       <span>{{ skill['Name'] }}</span>
+      <span class = 'divider'>-<span>
       <span>{{ skill['Description'] }}</span>
     </li>
   %end

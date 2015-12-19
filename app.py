@@ -23,8 +23,8 @@ def query(query_text):
 def get_person(id = 1):
 	return query('select * from person where rowid = %i' % id)[0]
 
-def get_skills(id = 1):
-	return query('select * from skill where rowid = 1')
+def get_skills(person_id = 1):
+	return query('select * from skill where person_id = %i' %person_id)
 
 def get_jobs(id = 1):
 	employers = query('select * from employer where rowid = 1')
