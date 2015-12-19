@@ -20,16 +20,32 @@ def query(query_text):
 		if con:
 			con.close()
 
+def mutable_rows(rows):
+	list = []
+	for row in rows:
+		dict = {}
+		for key in row.keys():
+			dict[key] = row[key]
+		list.append(dict)
+	return list
+
 def get_person(id = 1):
 	return query('select * from person where rowid = %i' % id)[0]
 
 def get_skills(person_id = 1):
 	return query('select * from skill where person_id = %i' %person_id)
 
-def get_jobs(id = 1):
-	employers = query('select * from employer where rowid = 1')
-	positions  = query('select * from position where rowid = 1')
-	return query('select * from job')
+def get_jobs(person_id = 1):
+	employers = mutable_rows(query('select *, rowid from employer where person_id = %i' % person_id))
+
+	for employer in employers:
+		positions = query('select *, rowid from position where employer_id = %i' % employer['rowid'])
+		employer['positions'] = mutable_rows(positions)
+		for position in employer['positions']:
+			highlights = query('select * from position_highlight where position_id = %i' % position['rowid'])
+			position['highlights'] = mutable_rows(highlights)
+
+	return employers
 
 # Really we ought to let the server handle this
 # but we probably want it for development.
@@ -57,7 +73,7 @@ def show_resume():
 	return template('resume',
 		person = person,
 		skills = skills,
-		jobs = jobs)
+		employers = jobs)
 
 @route('/page/<page_name>')
 def show_page(page_name):

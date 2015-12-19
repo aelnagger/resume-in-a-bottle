@@ -5,9 +5,13 @@
   <span>{{ person['address'] }}</span>
   <span>{{ person['phone_number'] }}</span>
   <span>{{ person['email'] }}</span>
+  <div>
+    <h3>Professional Summary</h3>
+    <span>{{ person['summary'] }}</span>
+  </div>
 </div>
 
-<h3>Skills:</h3>
+<h3>Core Skills:</h3>
 <div class = 'skills-container'>
   <ul>
   %for skill in skills:
@@ -20,11 +24,23 @@
   </ul>
 </div>
 
-<h3>Jobs:</h3>
+<h3>Professional Experience:</h3>
 <div class = 'jobs-container'>
 <ul>
-%for job in jobs:
-  <span>{{ job }}</span>
+%for employer in employers:
+  <h4>{{ employer['name'] }}</h4>
+  %for position in employer['positions']:
+    <div>
+      <span>{{ position['name'] }}</span>
+      <span>{{ position['start'] }}</span>
+      <span>{{ position['end'] }}</span>
+      <ul>
+      %for highlight in position['highlights']:
+        <li>{{ highlight['description'] }}</li>
+      %end
+    </ul>
+    </div>
+  %end
 %end
 </ul>
 </div>
