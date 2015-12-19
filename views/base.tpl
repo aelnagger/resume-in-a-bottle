@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
     <head>
-        <title>My Site!</title>
+        <title>Resume</title>
     </head>
     <body>
         <div id="pagebody">
